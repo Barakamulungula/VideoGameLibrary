@@ -6,12 +6,13 @@ import java.util.Scanner;
 public class Menu {
 
     private Scanner input = new Scanner(System.in);
+    static Library library = new Library();
 
     //Menu to prompt user for library options
     public void startMenu(){
 
         System.out.println("" +
-                "Welcome to the video game library, what would you like to do? \n" +
+                "\nWelcome to the video game library, what would you like to do? \n" +
                 "1. Add a game to the library \n" +
                 "2. Remove a game from the library \n" +
                 "3. View what is currently in the library \n" +
@@ -25,11 +26,14 @@ public class Menu {
 
                 case 1:
                     // Add a game
+
                     break;
                 case 2:
                     // Remove a game
                     break;
                 case 3:
+                    library.viewGameLibrary();
+                    startMenu();
                     // View the game library
                     break;
                 case 4:
