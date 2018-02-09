@@ -25,6 +25,8 @@ public class Menu {
             switch (input.nextInt()){
 
                 case 1:
+                    library.addGame();
+                    startMenu();
                     // Add a game
 
                     break;
