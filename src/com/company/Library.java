@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Library{
-    ArrayList<Game> games = new ArrayList<Game>();
-    ArrayList checkedOutGames = new ArrayList();
+    static ArrayList<Game> games = new ArrayList<Game>();
+    static ArrayList checkedOutGames = new ArrayList();
 
     private static Scanner input = new Scanner(System.in);
 
@@ -14,8 +14,15 @@ public class Library{
     protected void addGame(){
         System.out.println("Enter name of the game");
         if(input.hasNextLine()){
-            games.add(new Game(input.nextLine()));
-            System.out.println("You just added "+games.get(games.size()-1).getTitle());
+            String g = input.nextLine();
+            if(!(g.length() > 0)){
+                System.out.println("Enter input");
+                addGame();
+            }else{
+                games.add(new Game(g));
+                System.out.println("You just added "+games.get(games.size()-1).getTitle());
+            }
+
         }else{
             System.out.println("Error invalid input");
         }
@@ -23,7 +30,24 @@ public class Library{
 
     //remove a game from the library
     protected void removeGame(){
-
+        String removedGame;
+        viewGameLibrary();
+        if(Library.games.size() > 0){
+            System.out.println("Enter the number of the game you would like to remove");
+            if(input.hasNextInt()){
+                int num = input.nextInt();
+                if(num < 1 || num > games.size()){
+                    System.out.println("ERROR: enter number for game you want to remove");
+                    removeGame();
+                }else{
+                    removedGame = games.get(num-1).getTitle();
+                    games.remove(num-1);
+                    System.out.println("You just removed "+removedGame);
+                }
+            }else{
+                System.out.println("Error: Enter number of the game you wish to remove");
+            }
+        }
     }
 
     //checkout a game from the library
@@ -52,8 +76,6 @@ public class Library{
             System.out.println("There are no games currently in the library");
 
         }
-
-
     }
 
 }

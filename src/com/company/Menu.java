@@ -10,9 +10,8 @@ public class Menu {
 
     //Menu to prompt user for library options
     public void startMenu(){
-
         System.out.println("" +
-                "\nWelcome to the video game library, what would you like to do? \n" +
+                "\nWelcome to the video game library (NUMBER OF GAMES: "+Library.games.size()+") what would you like to do? \n" +
                 "1. Add a game to the library \n" +
                 "2. Remove a game from the library \n" +
                 "3. View what is currently in the library \n" +
@@ -32,6 +31,8 @@ public class Menu {
                     break;
                 case 2:
                     // Remove a game
+                    library.removeGame();
+                    startMenu();
                     break;
                 case 3:
                     library.viewGameLibrary();
@@ -58,7 +59,7 @@ public class Menu {
 
         }catch (InputMismatchException ime){
             input.nextLine();
-            System.out.println("\nSelect a number from 1 - 7\n");
+            System.out.println("\nSelect a number from 1 - 7");
             startMenu();
 
         }
