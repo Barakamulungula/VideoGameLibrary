@@ -1,8 +1,12 @@
 package com.company;
 
-public class Library {
+public class Library{
 
-    String games [] = {"Fortnite", "FIFA18"};
+    Game game1 = new Game("Fortnite");
+    Game game2 = new Game("FIFA18");
+    Game games[] = {game1, game2};
+
+
     // add a game to the library
     protected void addGame(){
 
@@ -33,7 +37,7 @@ public class Library {
         if(games.length > 0){
             System.out.println("List of games in your library");
             for(int x = 0; x < games.length; x++){
-                System.out.println(x+1+". "+games[x]);
+                System.out.println(x+1+". "+games[x].getTitle());
             }
         }else{
             System.out.println("There are no games currently in the library");
