@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private Scanner input = new Scanner(System.in);
-    static Library library = new Library();
+    private static Scanner input = new Scanner(System.in);
+    private static Library library = new Library();
 
     //Menu to prompt user for library options
     public void startMenu(){
@@ -24,10 +24,9 @@ public class Menu {
             switch (input.nextInt()){
 
                 case 1:
+                    // Add a game
                     library.addGame();
                     startMenu();
-                    // Add a game
-
                     break;
                 case 2:
                     // Remove a game
@@ -35,18 +34,24 @@ public class Menu {
                     startMenu();
                     break;
                 case 3:
+                    // View the game library
                     library.viewGameLibrary();
                     startMenu();
-                    // View the game library
                     break;
                 case 4:
                     // Check out a game
+                    library.checkOut();
+                    startMenu();
                     break;
                 case 5:
+                    library.checkIn();
+                    startMenu();
                     // Check in game
                     break;
                 case 6:
                     // View checked out games
+                    library.viewCheckedOutGames();
+                    startMenu();
                     break;
                 case 7:
                     // Exit program
@@ -54,6 +59,8 @@ public class Menu {
                     break;
                 default:
                     // prompt the user to pick a correct number, loop back to menu
+                    System.out.println("\nSelect a number from 1 - 7");
+                    startMenu();
                     break;
             }
 
