@@ -8,21 +8,26 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Library{
+    //saves games that the user enter
     protected static List<Game> games = new ArrayList<Game>();
+    //holds games the user checks out
     protected static List<Game> checkedOut = new ArrayList<Game>();
     private static Scanner input = new Scanner(System.in);
+    //date format for due date
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
 
 
     // add a game to the library
     protected void addGame(){
         System.out.println("Enter title of the game you would like to add");
+        //Checks if user enters valid input
         if(input.hasNextLine()){
             String g = input.nextLine();
             if(!(g.length() > 0)){
                 System.out.println("Error: Enter input");
                 addGame();
             }else{
+                //add user game to the games LIST
                 games.add(new Game(g));
                 System.out.println("You just added "+games.get(games.size()-1).getTitle()+" to your game library.");
             }
@@ -33,11 +38,15 @@ public class Library{
 
     //remove a game from the library
     protected void removeGame(){
+        //list current game in the library
         viewGameLibrary();
+
+        //checks if there is games in the library
         if(!Library.games.isEmpty()){
             System.out.println("Enter the number of the game you would like to remove");
             if(input.hasNextInt()){
                 int num = input.nextInt();
+                //checks if user input is in range to avoid out of bound exception
                 if(num < 1 || num > games.size()){
                     System.out.println("ERROR: enter the number for game you want to remove");
                     removeGame();
@@ -55,6 +64,7 @@ public class Library{
     //checkout a game from the library
     protected void checkOut(){
         viewGameLibrary();
+        //creates instance for the calender class (class is abstract)
         Calendar calendar = Calendar.getInstance();
         int num;
         if(!games.isEmpty()) {
@@ -63,7 +73,9 @@ public class Library{
                 try {
                     num = input.nextInt();
                     if (num > 0 && num <= games.size()) {
+                        //adds seven days to set due date
                         calendar.add(calendar.DAY_OF_YEAR, 7);
+                        //sets the dues date
                         games.get(num - 1).setDueDate(dateFormat.format(calendar.getTime()));
                         System.out.println("You just checked out " + games.get(num - 1).getTitle() +"(Due date: " + games.get(num - 1).getDueDate() + ")");
                         checkedOut.add(games.get(num - 1));
@@ -91,7 +103,9 @@ public class Library{
                 int num = input.nextInt();
                 if(num > 0 && num <= checkedOut.size()){
                     System.out.println("You checked in "+checkedOut.get(num-1).getTitle()+"due date: "+checkedOut.get(num-1).getDueDate()+")");
+                    //adds game to be checked out into the game library
                     games.add(checkedOut.get(num-1));
+                    //removes the game from the library
                     checkedOut.remove(num-1);
 
                 }else {
