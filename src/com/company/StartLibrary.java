@@ -24,7 +24,6 @@ public class StartLibrary {
                     System.out.println("Pick a number between 1 and 3");
                     start();
                     break;
-
             }
         }else{
             System.out.println("Enter valid input");

@@ -18,7 +18,7 @@ public class Login {
 
     protected void loginAccount(){
         users.add(new User("root", "root","default"));
-        System.out.println("Enter a username");
+        System.out.println("GAME LIBRARY LOGIN\nEnter your username");
         if(input.hasNextLine()){
             lengthCheck(input.nextLine());
             String username = value;
@@ -42,7 +42,7 @@ public class Login {
     }
 
     protected void createAccount(){
-        System.out.println("Enter a username");
+        System.out.println("GAME LIBRARY SIGNUP\nEnter a username for your new account");
         if(input.hasNextLine()){
             lengthCheck(input.nextLine());
             String username = value;
