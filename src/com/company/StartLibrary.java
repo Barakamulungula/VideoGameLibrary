@@ -26,6 +26,10 @@ public class StartLibrary {
                     break;
 
             }
+        }else{
+            System.out.println("Enter valid input");
+            input.nextLine();
+            start();
         }
     }
 }
