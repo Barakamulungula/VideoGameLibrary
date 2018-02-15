@@ -9,9 +9,9 @@ public class Login {
     private static List<User> users = new ArrayList<User>();
     private String value;
     private Scanner input = new Scanner(System.in);
-    Menu menu = new Menu();
+    private Menu menu = new Menu();
 
-    public final StartLibrary startlibrary;
+    private final StartLibrary startlibrary;
     public Login(StartLibrary startlibrary) {
         this.startlibrary = startlibrary;
     }
@@ -41,6 +41,7 @@ public class Login {
         }
     }
 
+    //method to create user account
     protected void createAccount(){
         System.out.println("GAME LIBRARY SIGNUP\nEnter a username for your new account");
         if(input.hasNextLine()){
@@ -69,7 +70,8 @@ public class Login {
         }
     }
 
-    protected void lengthCheck(String userInput){
+    //check if user is entering input
+    private void lengthCheck(String userInput){
         if(userInput.length() < 1){
             System.out.println("Enter valid input (Renter info)");
             createAccount();

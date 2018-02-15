@@ -5,6 +5,7 @@ public class User {
     private String password;
     private String fullName;
 
+    //constructor to require all user info when creating an account
     public User(String username, String password, String fullName) {
         this.username = username;
         this.password = password;

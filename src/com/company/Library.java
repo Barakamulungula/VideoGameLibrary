@@ -26,10 +26,17 @@ public class Library{
             if(!(g.length() > 0)){
                 System.out.println("Error: Enter input");
                 addGame();
+
             }else{
                 //add user game to the games LIST
-                games.add(new Game(g));
-                System.out.println("You just added "+games.get(games.size()-1).getTitle()+" to your game library.");
+                if(!checkIfGameExist(g)){
+                    games.add(new Game(g));
+                    System.out.println("You just added "+games.get(games.size()-1).getTitle()+" to your game library.");
+                }else{
+                    System.out.println("This game already exists");
+                    addGame();
+                }
+
             }
         }else{
             System.out.println("Error invalid input");
@@ -145,6 +152,16 @@ public class Library{
             System.out.println("There are no games currently in the library");
 
         }
+    }
+    // checks if the user tries to add a game that already exist
+    protected boolean checkIfGameExist(String game){
+        boolean c = false;
+        for(Game g: games){
+            if(g.getTitle().toUpperCase().equals(game.toUpperCase())){
+                c = true;
+            }
+        }
+        return c;
     }
 
 }
